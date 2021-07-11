@@ -35,23 +35,22 @@ export default class TorrentURLIndex {
 			console.log("FETCH TORRENT", req.params.url);
 			const torrent = this.getTorrentByURL(req.params.url);
 			if (torrent) {
-				res.setHeader("Content-Type", "application/x-bittorrent");
-				res.send(ParseTorrent.toTorrentFile(torrent));
+				res.send(torrent);
 			} else res.sendStatus(404);
 		});
 
 		this.app.post("/", (req: Request, res: Response) => {
-			console.log("REGISTER TORRENT", req.body.url);
-			const recievedTorrent: ParseTorrentFile.Instance = <
-				ParseTorrentFile.Instance
-			>ParseTorrent(Buffer.from(req.body.torrent));
+			const recievedTorrent: ParseTorrentFile.Instance = req.body;
+			console.log("REGISTER TORRENT", recievedTorrent.urlList);
 
 			const torrent = this.getTorrentByHash(<string>recievedTorrent.infoHash);
 
 			if (torrent) {
-				torrent.urlList?.push(req.body.url);
+				if (torrent.urlList && recievedTorrent.urlList)
+					torrent.urlList = [...torrent.urlList, ...recievedTorrent.urlList];
+				else if (!torrent.urlList && recievedTorrent.urlList)
+					torrent.urlList = recievedTorrent.urlList;
 			} else {
-				recievedTorrent.urlList?.push(req.body.url);
 				this.torrents.push(recievedTorrent);
 			}
 			res.sendStatus(201);
