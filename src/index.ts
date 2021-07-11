@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import ParseTorrent from "parse-torrent";
 import ParseTorrentFile from "parse-torrent-file";
 
 export default class TorrentURLIndex {
