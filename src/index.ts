@@ -7,7 +7,7 @@ export default class TorrentURLIndex {
 	private torrents: ParseTorrentFile.Instance[] = [];
 
 	constructor(port = 8000) {
-		this.app.use(express.json());
+		this.app.use(express.json({ limit: "50mb" }));
 		this.app.use(cors());
 		const listener = this.app.listen(port, () => {
 			console.log("app listening at", listener.address());
