@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import commander, { Command, OptionValues } from "commander";
-import TorrentURLIndex from "./index";
+import WebTorrentFetchIndex from "./index";
 
 const program: commander.Command = new Command();
 
@@ -11,4 +11,4 @@ program.parse(process.argv);
 
 const options: OptionValues = program.opts();
 
-new TorrentURLIndex(options.port);
+new WebTorrentFetchIndex(options.port);

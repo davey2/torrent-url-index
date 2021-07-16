@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import ParseTorrentFile from "parse-torrent-file";
 
-export default class TorrentURLIndex {
+export default class WebTorrentFetchIndex {
 	private app = express();
 	private torrents: ParseTorrentFile.Instance[] = [];
 
