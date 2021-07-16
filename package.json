@@ -56,6 +56,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/davey2/torrent-url-index.git"
+		"url": "https://github.com/davey2/webtorrent-fetch-index.git"
 	}
 }
