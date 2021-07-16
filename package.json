@@ -1,5 +1,5 @@
 {
-	"name": "torrent-url-index",
+	"name": "webtorrent-fetch-index",
 	"main": "dist/index.js",
 	"bin": "dist/cli.js",
 	"types": "dist/index.d.ts",
